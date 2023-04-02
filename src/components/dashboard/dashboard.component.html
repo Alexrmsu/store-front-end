@@ -1,1 +1,19 @@
-<p>dashboard works!</p>
+
+<mat-drawer-container class="example-container" autosize>
+
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+
+    <p>INFO DASHBOARD</p>
+
+  </mat-drawer>
+
+    <button type="button" mat-button (click)="drawer.toggle()">
+
+      <mat-icon *ngIf="showFiller==false">menu</mat-icon>
+      <mat-icon *ngIf="showFiller==true">home</mat-icon>
+
+    </button>
+
+
+
+</mat-drawer-container>

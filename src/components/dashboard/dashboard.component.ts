@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  showFiller = false;
+  onclick(){
+    let showFiller = true;
+  }
+
 }
