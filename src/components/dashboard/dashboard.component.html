@@ -7,10 +7,10 @@
 
   </mat-drawer>
 
-    <button type="button" mat-button (click)="drawer.toggle()">
+    <button type="button" mat-button (click)="show(); drawer.toggle()">
 
       <mat-icon *ngIf="showFiller==false">menu</mat-icon>
-      <mat-icon *ngIf="showFiller==true">home</mat-icon>
+      <mat-icon *ngIf="showFiller==true">close</mat-icon>
 
     </button>
 

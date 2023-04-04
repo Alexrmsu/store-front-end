@@ -6,10 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-
   showFiller = false;
-  onclick(){
-    let showFiller = true;
+
+  show() {
+    this.showFiller = !this.showFiller;
+    console.log(this.showFiller)
   }
 
 }
