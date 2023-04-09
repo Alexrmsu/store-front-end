@@ -12,6 +12,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {StoreComponent} from "./store/store.component";
 import { CartComponent } from './cart/cart.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {TokenInterceptorService} from "../services/token-interceptor.service";
+
 
 @NgModule({
   declarations: [
@@ -29,9 +33,15 @@ import { CartComponent } from './cart/cart.component';
         MatSidenavModule,
         MatIconModule,
         MatButtonModule,
-        MatToolbarModule
+        MatToolbarModule,
+      HttpClientModule,
+
     ],
-  providers: [],
+  providers: [
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
+    {provide: HTTP_INTERCEPTORS , useClass: TokenInterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
