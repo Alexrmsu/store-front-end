@@ -1,7 +1,7 @@
 .card {
   padding: 1.9rem 1.2rem;
   text-align: center;
-  background: #202121;
+  background: #3d3d3d;
   min-width: 450px;
   max-width: 600px;
   margin: 0 auto;
@@ -13,6 +13,10 @@
   box-shadow: #3d3838 1px 3px 40px 1px;
 }
 
+.bg-login {
+  background: #3d3d3d!important;
+
+}
 
 
 .field {
@@ -21,7 +25,7 @@
   align-items: center;
   justify-content: center;
   gap: .5em;
-  background-color: #1f2029;
+  background-color: #3d3d3d;
   border-radius: 4px;
   padding: .5em 1em;
 }
@@ -72,4 +76,11 @@
   background-color: #5e6681;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .card {
+    min-width: 320px;
+  }
 }
