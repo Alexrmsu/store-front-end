@@ -1,0 +1,28 @@
+
+footer{
+  background-color: #212529;
+  color: #fff;
+  box-shadow: 2px 2px 2px 10px dimgray;
+  border: black 3px solid;
+  padding: 100px;
+}
+footer hr{
+  background-color: floralwhite!important;
+  max-width: 7em;
+  opacity: 1;
+  margin-top: -0.7em;
+  height: 4px;
+  border-radius: 24px;
+}
+
+footer a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  transition: 0.5s;
+}
+
+footer a:hover{
+  font-size: 1.3em;
+  transition: 0.3s;
+}

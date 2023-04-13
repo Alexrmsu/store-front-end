@@ -51,6 +51,7 @@ export class LoginComponent {
             toast.addEventListener('mouseleave', Swal.resumeTimer);
           }
         }).fire();
+        this.router.navigate(['/dashboard']);
 
       }
 
