@@ -1,0 +1,12 @@
+<div class="row justify-content center">
+  <h1> Subir nuevo producto </h1>
+  <form [formGroup]="productForm">
+    <input type="text" formControlName="name" placeholder="Nombre del producto">
+    <input type="text" formControlName="description" placeholder="Descripción del producto">
+    <input type="number" formControlName="price" placeholder="Precio del producto">
+    <input type="file" formControlName="image"  accept="image/png, image/jpeg,.jpeg,.png" placeholder="Imagen del producto">
+    <button type="submit" (click)="sendProduct()">Enviar</button>
+
+  </form>
+
+</div>
