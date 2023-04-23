@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import * as buffer from "buffer";
 
 
 @Injectable({
@@ -13,8 +14,12 @@ export class ProductService {
     private HTTP: HttpClient
   ) { }
 
-  sendProduct(product:object) {
+  sendProduct(product: buffer.Buffer | object) {
     return this.HTTP.post<object>(this.URL + '/add', product);
+  }
+
+  uploadImage(image: any) {
+    return this.HTTP.post<any>(this.URL + '/upload', image);
   }
 
 }

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
 import Swal from "sweetalert2";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-admin',
@@ -44,7 +44,6 @@ export class AdminComponent implements OnInit {
 
   sendProduct() {
     console.log(this.productForm.value);
-    this.productForm.value.image = this.productForm.value.image.replace('C:\\fakepath\\', 'product\\')
     this.productService.sendProduct(this.productForm.value).subscribe((res:any) => {
       if (res.status == 'Product saved') {
         Swal.mixin({
