@@ -17,6 +17,7 @@ import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {TokenInterceptorService} from "../services/token-interceptor.service";
 import { ManagementComponent } from './management/management.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProductsComponent } from './admin/products/products.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AdminComponent } from './admin/admin.component';
     StoreComponent,
     CartComponent,
     ManagementComponent,
-    AdminComponent
+    AdminComponent,
+    ProductsComponent
   ],
     imports: [
         BrowserModule,
