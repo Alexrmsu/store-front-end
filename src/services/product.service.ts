@@ -22,4 +22,9 @@ export class ProductService {
     return this.HTTP.post<any>(this.URL + '/upload', image);
   }
 
+  getProducts() {
+    return this.HTTP.get<object>(this.URL + '/get', {observe: 'response'});
+  }
+
+
 }

@@ -18,6 +18,9 @@ import {TokenInterceptorService} from "../services/token-interceptor.service";
 import { ManagementComponent } from './management/management.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductsComponent } from './admin/products/products.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -31,18 +34,21 @@ import { ProductsComponent } from './admin/products/products.component';
     AdminComponent,
     ProductsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatButtonModule,
-        MatToolbarModule,
-      HttpClientModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
 
-    ],
+  ],
   providers: [
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService,
