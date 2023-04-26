@@ -23,8 +23,11 @@ export class ProductService {
   }
 
   getProducts() {
-    return this.HTTP.get<object>(this.URL + '/get', {observe: 'response'});
+    return this.HTTP.get<object>(this.URL + '/all', {observe: 'response'});
   }
 
 
+  deleteProduct(id: number) {
+    return this.HTTP.delete<object>(this.URL + '/delete/' + id);
+  }
 }
