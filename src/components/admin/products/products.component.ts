@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild} f
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {ProductService} from "../../../services/product.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-products',
@@ -12,12 +14,16 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'description', 'price','delete'];
   dataSource = new MatTableDataSource<ProductsElement>;
+  actualTask: FormGroup | any;
+  closeResult = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private modalService: NgbModal,
+    public fb: FormBuilder
   ) {
 
   }
@@ -33,6 +39,15 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.getProduct();
+
+    this.actualTask = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      id: ['', Validators.required],
+    })
+
+
   }
 
   getProduct() {
@@ -48,6 +63,43 @@ export class ProductsComponent implements AfterViewInit, OnInit {
       this.getProduct();
     });
   }
+
+
+
+
+
+  openEditProduct(content: any, item: any) {
+
+
+
+    this.actualTask.setValue({
+      taskId: item.taskId,
+      userId: item.userId,
+      nombreTarea: item.nombreTarea,
+      fechaInicio: item.fechaInicio,
+      fechaTermino: item.fechaTermino,
+      estado: item.estado
+    })
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
+    });
+  }
+
+
+  private static getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
+  }
+
+
 
 
 }
