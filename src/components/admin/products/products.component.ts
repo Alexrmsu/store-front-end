@@ -68,17 +68,13 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 
 
-  openEditProduct(content: any, item: any) {
-
-
+  openEditProduct(content: any , item: any) {
 
     this.actualTask.setValue({
-      taskId: item.taskId,
-      userId: item.userId,
-      nombreTarea: item.nombreTarea,
-      fechaInicio: item.fechaInicio,
-      fechaTermino: item.fechaTermino,
-      estado: item.estado
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      id: item.id,
     })
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
