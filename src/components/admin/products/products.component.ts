@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
+import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {ProductService} from "../../../services/product.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -64,11 +64,18 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
   }
 
+  updateProduct(id:number) {
+    this.productService.updateProduct(this.actualTask.value).subscribe((res: any) => {
+      console.log(res);
+      this.getProduct();
+    });
+  }
 
 
 
 
   openEditProduct(content: any , item: any) {
+
 
     this.actualTask.setValue({
       name: item.name,

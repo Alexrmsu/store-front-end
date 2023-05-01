@@ -30,4 +30,9 @@ export class ProductService {
   deleteProduct(id: number) {
     return this.HTTP.delete<object>(this.URL + '/delete/' + id);
   }
+
+  updateProduct(product:any) {
+    return this.HTTP.put<object>(this.URL + '/update', product);
+  }
+
 }

@@ -40,7 +40,46 @@
           <th mat-header-cell *matHeaderCellDef> Opciones </th>
           <td mat-cell *matCellDef="let x">
             <button mat-raised-button color="primary" (click)="openEditProduct(content,x)">Editar</button>
-            <button mat-raised-button color="warn" (click)="removeProduct(x.id)">Eliminar</button> </td>
+            <button mat-raised-button color="warn" (click)="removeProduct(x.id)">Eliminar</button>
+
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title">ACTUALIZAR TAREA</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <form [formGroup]="actualTask">
+                      <div class="form-group mt-2">
+                        <label>ID DE PRODUCTO</label>
+                        <fieldset disabled>
+                          <input type="number" formControlName="id" placeholder="PRODUCT ID" class="form-control">
+                        </fieldset>
+                      </div>
+                      <div class="form-group mt-2">
+                        <label>NOMBRE DEL PRODUCTO</label>
+                        <input type="text" formControlName="name" placeholder="NOMBRE" class="form-control">
+                      </div>
+                      <div class="form-group mt-2">
+                        <label>DESCRIPCION</label>
+                        <input type="text" formControlName="description" placeholder="DESCRIPCION" class="form-control">
+                      </div>
+                      <div class="form-group mt-2">
+                        <label>PRECIO</label>
+                        <input type="text" formControlName="price" placeholder="PRECIO" class="form-control">
+                      </div>
+
+                    </form>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark"  (click)="updateProduct(x.id)" >ACTUALIZAR</button>
+              </div>
+            </ng-template>
+
+          </td>
 
         </ng-container>
 
@@ -54,42 +93,7 @@
       </mat-paginator>
 
 
-      <ng-template #content let-modal>
-        <div class="modal-header">
-          <h4 class="modal-title">ACTUALIZAR TAREA</h4>
-          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">x</button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <form [formGroup]="actualTask">
-                <div class="form-group mt-2">
-                  <label>ID DE PRODUCTO</label>
-                  <fieldset disabled>
-                    <input type="number" formControlName="id" placeholder="PRODUCT ID" class="form-control">
-                  </fieldset>
-                </div>
-                <div class="form-group mt-2">
-                  <label>NOMBRE DEL PRODUCTO</label>
-                  <input type="text" formControlName="name" placeholder="NOMBRE" class="form-control">
-                </div>
-                <div class="form-group mt-2">
-                  <label>DESCRIPCION</label>
-                  <input type="text" formControlName="description" placeholder="DESCRIPCION" class="form-control">
-                </div>
-                <div class="form-group mt-2">
-                  <label>PRECIO</label>
-                  <input type="text" formControlName="price" placeholder="PRECIO" class="form-control">
-                </div>
 
-              </form>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="updateProduct()">ACTUALIZAR</button>
-        </div>
-      </ng-template>
 
 
 
