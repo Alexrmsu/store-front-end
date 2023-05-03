@@ -8,9 +8,11 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements AfterViewInit, OnInit {
+
+
 
   displayedColumns: string[] = ['id', 'name', 'description', 'price','delete'];
   dataSource = new MatTableDataSource<ProductsElement>;
@@ -23,8 +25,10 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   constructor(
     private productService: ProductService,
     private modalService: NgbModal,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private myPaginatorIntl: MatPaginatorIntl
   ) {
+    this.myPaginatorIntl.itemsPerPageLabel = 'Productos por página:';
 
   }
 
