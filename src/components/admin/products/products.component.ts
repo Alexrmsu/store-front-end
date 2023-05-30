@@ -77,6 +77,13 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
+  openImage(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
+    });
+  }
 
 
   openEditProduct(content: any , item: any) {
