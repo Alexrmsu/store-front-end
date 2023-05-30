@@ -14,9 +14,9 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 
 
-  displayedColumns: string[] = ['id', 'name', 'description', 'price','delete'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'image', 'price','delete'];
   dataSource = new MatTableDataSource<ProductsElement>;
-  actualTask: FormGroup | any;
+  actualProduct: FormGroup | any;
   closeResult = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
@@ -44,7 +44,8 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.getProduct();
 
-    this.actualTask = this.fb.group({
+    this.actualProduct = this.fb.group({
+      image: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
@@ -69,7 +70,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
   updateProduct(id:number) {
-    this.productService.updateProduct(this.actualTask.value).subscribe((res: any) => {
+    this.productService.updateProduct(this.actualProduct.value).subscribe((res: any) => {
       console.log(res);
       this.getProduct();
     });
@@ -81,7 +82,8 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   openEditProduct(content: any , item: any) {
 
 
-    this.actualTask.setValue({
+    this.actualProduct.setValue({
+      image: item.image,
       name: item.name,
       description: item.description,
       price: item.price,
@@ -117,6 +119,7 @@ export interface ProductsElement {
   name: string;
   description: string;
   price: string;
+  image: string;
 }
 
 
