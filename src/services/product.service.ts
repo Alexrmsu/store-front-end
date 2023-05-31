@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import * as buffer from "buffer";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -14,6 +15,8 @@ export class ProductService {
     private HTTP: HttpClient
   ) { }
 
+
+
   sendProduct(product: buffer.Buffer | object) {
     return this.HTTP.post<object>(this.URL + '/add', product);
   }
@@ -25,7 +28,6 @@ export class ProductService {
   getProducts() {
     return this.HTTP.get<object>(this.URL + '/all', {observe: 'response'});
   }
-
 
   deleteProduct(id: number) {
     return this.HTTP.delete<object>(this.URL + '/delete/' + id);

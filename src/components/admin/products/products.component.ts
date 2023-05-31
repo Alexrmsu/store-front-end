@@ -17,6 +17,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'name', 'description', 'image', 'price','delete'];
   dataSource = new MatTableDataSource<ProductsElement>;
   actualProduct: FormGroup | any;
+  newP: FormGroup | any;
   closeResult = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
@@ -52,8 +53,30 @@ export class ProductsComponent implements AfterViewInit, OnInit {
       id: ['', Validators.required],
     })
 
+    this.newP = this.fb.group({
+      image: ['', Validators.required],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      id: [0, Validators.required],
+    })
 
   }
+
+
+  addProduct() {
+    this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/');
+    this.productService.sendProduct(this.newP.value).subscribe((res: any) => {
+      console.log(res);
+      this.getProduct();
+    });
+    this.productService.uploadImage(this.newP.value.image).subscribe((res: any) => {
+      console.log(res);
+      this.getProduct();
+    });
+
+  }
+
 
   getProduct() {
     this.productService.getProducts().subscribe((res: any) => {
@@ -84,6 +107,16 @@ export class ProductsComponent implements AfterViewInit, OnInit {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
+
+  openAddProduct(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      this.getProduct();
+    }, (reason) => {
+      this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
+    });
+  }
+
 
 
   openEditProduct(content: any , item: any) {

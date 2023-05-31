@@ -1,8 +1,59 @@
 <div class="row g-0 justify-content-center align-items-center align-content-center d-flex mx-auto">
   <div class="col-10 mt-5 mb-5">
+    <button mat-raised-button color="primary" class="mt-3 mb-3 p-3" (click)="openAddProduct(newProduct)">Agregar Producto</button>
+
+    <ng-template #newProduct let-modal>
+
+      <div class="modal-header">
+        <h4 class="modal-title">AGREGAR PRODUCTO</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <form [formGroup]="newP">
+                <div class="form-group mt-2">
+                  <label>ID DE PRODUCTO</label>
+                  <fieldset disabled>
+                    <input type="number" formControlName="id" placeholder="PRODUCT ID" class="form-control">
+                  </fieldset>
+                </div>
+                <div class="form-group mt-2">
+                  <label>NOMBRE DEL PRODUCTO</label>
+                  <input type="text" formControlName="name" placeholder="NOMBRE" class="form-control">
+                </div>
+                <div class="form-group mt-2">
+                  <label>DESCRIPCIÓN</label>
+                  <input type="text" formControlName="description" placeholder="DESCRIPCION" class="form-control">
+                </div>
+                <div class="form-group mt-2">
+                  <label>PRECIO</label>
+                  <input type="text" formControlName="price" placeholder="PRECIO" class="form-control">
+                </div>
+
+                <div class="form-group mt-2">
+                  <label>IMAGEN</label>
+                  <input type="file" formControlName="image" placeholder="IMAGEN" class="form-control">
+                </div>
+
+                <button type="button" class="btn btn-outline-dark mb-2 mt-2" (click)="addProduct()">Agregar</button>
+
+              </form>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+    </ng-template>
+
     <div class="mat-elevation-z8">
       <mat-form-field class="w-100">
-        <mat-label>Filtro</mat-label>
+        <mat-label>Buscar...</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese un nombre para buscar" #input>
       </mat-form-field>
 
