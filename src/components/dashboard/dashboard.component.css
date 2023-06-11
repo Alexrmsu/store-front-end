@@ -14,7 +14,7 @@
   padding: 100px;
 }
 
-.card{
+.card {
   width: 100%;
   max-width: 20rem;
   margin: 0 auto;
@@ -24,7 +24,7 @@
   transition: .2s ease-in-out;
 }
 
-.card:hover{
+.card:hover {
   transform: scale(1.05);
 }
 

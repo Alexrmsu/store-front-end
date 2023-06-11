@@ -13,8 +13,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ProductsComponent implements AfterViewInit, OnInit {
 
 
-
-  displayedColumns: string[] = ['id', 'name', 'description', 'image', 'price','delete'];
+  displayedColumns: string[] = ['id', 'name', 'description', 'image', 'price', 'delete'];
   dataSource = new MatTableDataSource<ProductsElement>;
   actualProduct: FormGroup | any;
   newP: FormGroup | any;
@@ -92,7 +91,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
   }
 
-  updateProduct(id:number) {
+  updateProduct(id: number) {
     this.productService.updateProduct(this.actualProduct.value).subscribe((res: any) => {
       console.log(res);
       this.getProduct();
@@ -118,8 +117,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
-
-  openEditProduct(content: any , item: any) {
+  openEditProduct(content: any, item: any) {
 
 
     this.actualProduct.setValue({
@@ -147,8 +145,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
       return ``;
     }
   }
-
-
 
 
 }
