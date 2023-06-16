@@ -10,7 +10,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {StoreComponent} from "./store/store.component";
 import {CartComponent} from './cart/cart.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
@@ -28,7 +27,6 @@ import {MatInputModule} from "@angular/material/input";
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    StoreComponent,
     CartComponent,
     ManagementComponent,
     AdminComponent,

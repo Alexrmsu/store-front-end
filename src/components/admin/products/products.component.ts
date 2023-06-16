@@ -64,7 +64,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 
   addProduct() {
-    this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/');
+    this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/'); /*  TODO: change path and put and env variable for the server url*/
     this.productService.sendProduct(this.newP.value).subscribe((res: any) => {
       console.log(res);
       this.getProduct();
