@@ -27,7 +27,7 @@ export class LoginComponent {
   }
 
   logIn(): void {
-    this.authService.loginUser(this.loginForm.value).subscribe((res: any) => {
+    this.authService.loginUser(this.loginForm.value).subscribe((res: any): void => {
       localStorage.setItem('token', res.token);
       if (res.status == 'Usuario o contraseña incorrectos') {
         Swal.fire({
@@ -46,13 +46,26 @@ export class LoginComponent {
           timer: 2000,
           timerProgressBar: true,
           showConfirmButton: false,
-          didOpen: (toast: HTMLElement) => {
+          didOpen: (toast: HTMLElement) : void=> {
             toast.addEventListener('mouseenter', Swal.stopTimer);
             toast.addEventListener('mouseleave', Swal.resumeTimer);
           }
         }).fire();
-        this.router.navigate(['/dashboard']);
 
+        switch (res.rol) {
+          case 'admin':
+            this.router.navigate(['/admin']);
+            break;
+          case 'user':
+            this.router.navigate(['/dashboard']);
+            break;
+          case 'management':
+            this.router.navigate(['/management']);
+            break;
+          default:
+            this.router.navigate(['/dashboard']);
+            break;
+        }
       }
 
     });

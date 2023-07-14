@@ -17,7 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: {expectedRole: 'admin'}
   },
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 ];
 
 @NgModule({
