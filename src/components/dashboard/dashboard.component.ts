@@ -11,11 +11,6 @@ export class DashboardComponent implements OnInit {
   showFiller: boolean = false;
   products: {} = {};
 
-  show(): void {
-    this.showFiller = !this.showFiller;
-    console.log(this.showFiller)
-  }
-
   constructor(
     private productService: ProductService,
   ) {}
