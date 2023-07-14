@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import Swal from "sweetalert2";
+import decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -51,7 +52,10 @@ export class LoginComponent {
             toast.addEventListener('mouseleave', Swal.resumeTimer);
           }
         }).fire();
-
+        const token: string | null = localStorage.getItem('token');
+        // @ts-ignore
+        const {rol} = decode(token);
+        console.log(rol)
         switch (res.rol) {
           case 'admin':
             this.router.navigate(['/admin']);
