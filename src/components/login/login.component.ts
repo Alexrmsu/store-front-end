@@ -55,8 +55,8 @@ export class LoginComponent {
         const token: string | null = localStorage.getItem('token');
         // @ts-ignore
         const {rol} = decode(token);
-        console.log(rol)
-        switch (res.rol) {
+
+        switch (rol) {
           case 'admin':
             this.router.navigate(['/admin']);
             break;
