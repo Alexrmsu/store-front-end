@@ -26,7 +26,7 @@ export class LoginComponent {
     })
   }
 
-  logIn() {
+  logIn(): void {
     this.authService.loginUser(this.loginForm.value).subscribe((res: any) => {
       localStorage.setItem('token', res.token);
       if (res.status == 'Usuario o contraseña incorrectos') {

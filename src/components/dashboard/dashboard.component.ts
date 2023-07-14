@@ -8,10 +8,10 @@ import {ProductService} from "../../services/product.service";
 })
 export class DashboardComponent implements OnInit {
 
-  showFiller = false;
+  showFiller: boolean = false;
   products: {} = {};
 
-  show() {
+  show(): void {
     this.showFiller = !this.showFiller;
     console.log(this.showFiller)
   }
@@ -20,12 +20,12 @@ export class DashboardComponent implements OnInit {
     private productService: ProductService,
   ) {}
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.getProducts()
   }
 
 
-  getProducts(){
+  getProducts(): void{
     this.productService.getProducts().subscribe((res: {}) => {
       console.log(res);
       this.products = res;

@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ProductService} from "../../../services/product.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {MatTab} from "@angular/material/tabs";
 
 @Component({
   selector: 'app-products',
@@ -17,7 +18,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<ProductsElement>;
   actualProduct: FormGroup | any;
   newP: FormGroup | any;
-  closeResult = '';
+  closeResult: string = '';
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
@@ -32,16 +33,16 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(event: Event): void {
+    const filterValue: string = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getProduct();
 
     this.actualProduct = this.fb.group({
@@ -63,7 +64,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
-  addProduct() {
+  addProduct(): void {
     this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/'); /*  TODO: change path and put and env variable for the server url*/
     this.productService.sendProduct(this.newP.value).subscribe((res: any) => {
       console.log(res);
@@ -77,21 +78,21 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
-  getProduct() {
+  getProduct(): void {
     this.productService.getProducts().subscribe((res: any) => {
       this.dataSource = new MatTableDataSource<ProductsElement>(res.body);
       console.log(res.body)
     });
   }
 
-  removeProduct(id: number) {
+  removeProduct(id: number): void {
     this.productService.deleteProduct(id).subscribe((res: any) => {
       console.log(res);
       this.getProduct();
     });
   }
 
-  updateProduct(id: number) {
+  updateProduct(id: number): void {
     this.productService.updateProduct(this.actualProduct.value).subscribe((res: any) => {
       console.log(res);
       this.getProduct();
@@ -99,7 +100,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
-  openImage(content: any) {
+  openImage(content: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -107,7 +108,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
   }
 
-  openAddProduct(content: any) {
+  openAddProduct(content: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       this.getProduct();
@@ -117,7 +118,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
 
-  openEditProduct(content: any, item: any) {
+  openEditProduct(content: any, item: any): void {
 
 
     this.actualProduct.setValue({
@@ -130,7 +131,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
+    }, (reason): void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
