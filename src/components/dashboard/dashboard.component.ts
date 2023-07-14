@@ -8,7 +8,6 @@ import {ProductService} from "../../services/product.service";
 })
 export class DashboardComponent implements OnInit {
 
-  showFiller: boolean = false;
   products: {} = {};
 
   constructor(

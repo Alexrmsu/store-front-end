@@ -66,11 +66,11 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   addProduct(): void {
     this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/'); /*  TODO: change path and put and env variable for the server url*/
-    this.productService.sendProduct(this.newP.value).subscribe((res: any) => {
+    this.productService.sendProduct(this.newP.value).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
     });
-    this.productService.uploadImage(this.newP.value.image).subscribe((res: any) => {
+    this.productService.uploadImage(this.newP.value.image).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
     });
@@ -79,21 +79,21 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 
   getProduct(): void {
-    this.productService.getProducts().subscribe((res: any) => {
+    this.productService.getProducts().subscribe((res: any): void => {
       this.dataSource = new MatTableDataSource<ProductsElement>(res.body);
       console.log(res.body)
     });
   }
 
   removeProduct(id: number): void {
-    this.productService.deleteProduct(id).subscribe((res: any) => {
+    this.productService.deleteProduct(id).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
     });
   }
 
   updateProduct(id: number): void {
-    this.productService.updateProduct(this.actualProduct.value).subscribe((res: any) => {
+    this.productService.updateProduct(this.actualProduct.value).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
     });
@@ -101,18 +101,18 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 
   openImage(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) : void => {
       this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
+    }, (reason) : void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
 
   openAddProduct(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) : void => {
       this.closeResult = `Closed with: ${result}`;
       this.getProduct();
-    }, (reason) => {
+    }, (reason): void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
