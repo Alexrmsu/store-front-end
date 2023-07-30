@@ -4,7 +4,6 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ProductService} from "../../../services/product.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {MatTab} from "@angular/material/tabs";
 
 @Component({
   selector: 'app-products',
@@ -31,6 +30,16 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   ) {
     this.myPaginatorIntl.itemsPerPageLabel = 'Productos por página:';
 
+  }
+
+  private static getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -63,7 +72,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   }
 
-
   addProduct(): void {
     this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/'); /*  TODO: change path and put and env variable for the server url*/
     this.productService.sendProduct(this.newP.value).subscribe((res: any): void => {
@@ -76,7 +84,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
 
   }
-
 
   getProduct(): void {
     this.productService.getProducts().subscribe((res: any): void => {
@@ -99,24 +106,22 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
   }
 
-
   openImage(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) : void => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result): void => {
       this.closeResult = `Closed with: ${result}`;
-    }, (reason) : void => {
+    }, (reason): void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
 
   openAddProduct(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) : void => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result): void => {
       this.closeResult = `Closed with: ${result}`;
       this.getProduct();
     }, (reason): void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
   }
-
 
   openEditProduct(content: any, item: any): void {
 
@@ -134,17 +139,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     }, (reason): void => {
       this.closeResult = `Dismissed ${ProductsComponent.getDismissReason(reason)}`;
     });
-  }
-
-
-  private static getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return '';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return '';
-    } else {
-      return ``;
-    }
   }
 
 

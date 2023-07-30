@@ -47,7 +47,7 @@ export class LoginComponent {
           timer: 2000,
           timerProgressBar: true,
           showConfirmButton: false,
-          didOpen: (toast: HTMLElement) : void=> {
+          didOpen: (toast: HTMLElement): void => {
             toast.addEventListener('mouseenter', Swal.stopTimer);
             toast.addEventListener('mouseleave', Swal.resumeTimer);
           }
