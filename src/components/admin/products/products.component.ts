@@ -99,7 +99,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
   }
 
-  updateProduct(id: number): void {
+  updateProduct(): void {
     this.productService.updateProduct(this.actualProduct.value).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
