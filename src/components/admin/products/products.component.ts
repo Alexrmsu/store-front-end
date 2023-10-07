@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {ProductService} from "../../../services/product.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ProductsElement} from "../../../interfaces/product";
 
 @Component({
   selector: 'app-products',
@@ -73,8 +74,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
   }
 
   addProduct(): void {
-    this.newP.value.image = this.newP.value.image.replace('C:\\fakepath\\', "http://localhost:3000" + '/product/image/'); /*  TODO: change path and put and env variable for the server url*/
-    this.productService.sendProduct(this.newP.value).subscribe((res: any): void => {
+     this.productService.sendProduct(this.newP.value).subscribe((res: any): void => {
       console.log(res);
       this.getProduct();
     });
@@ -144,14 +144,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
 }
 
-
-export interface ProductsElement {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  image: string;
-}
 
 
 
